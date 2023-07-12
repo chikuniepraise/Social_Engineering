@@ -1,0 +1,390 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={socialenginerring.R},
+  pdfauthor={charl},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{socialenginerring.R}
+\author{charl}
+\date{2023-07-12}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stringr)}
+\FunctionTok{library}\NormalTok{(httr)}
+\FunctionTok{library}\NormalTok{(tm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: NLP
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'NLP'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:httr':
+## 
+##     content
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.2     v purrr     1.0.1
+## v forcats   1.0.0     v readr     2.1.4
+## v ggplot2   3.4.2     v tibble    3.2.1
+## v lubridate 1.9.2     v tidyr     1.3.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x ggplot2::annotate() masks NLP::annotate()
+## x NLP::content()      masks httr::content()
+## x dplyr::filter()     masks stats::filter()
+## x dplyr::lag()        masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(e1071)}
+\FunctionTok{library}\NormalTok{(SparseM)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'SparseM'
+## 
+## The following object is masked from 'package:base':
+## 
+##     backsolve
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: lattice
+## 
+## Attaching package: 'caret'
+## 
+## The following object is masked from 'package:purrr':
+## 
+##     lift
+## 
+## The following object is masked from 'package:httr':
+## 
+##     progress
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load the saved models}
+\NormalTok{spammodel }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"spam.rds"}\NormalTok{)}
+\NormalTok{phishingmodel }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"phishing.rbs"}\NormalTok{)}
+
+\NormalTok{has\_ascii\_characters }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(str) \{}
+\NormalTok{  encoding }\OtherTok{\textless{}{-}} \FunctionTok{Encoding}\NormalTok{(str)}
+  \FunctionTok{return}\NormalTok{(encoding }\SpecialCharTok{==} \StringTok{"unknown"} \SpecialCharTok{||}\NormalTok{ encoding }\SpecialCharTok{==} \StringTok{"ASCII"}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{preprocess\_text }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(text) \{}
+\NormalTok{  corpus }\OtherTok{\textless{}{-}} \FunctionTok{Corpus}\NormalTok{(}\FunctionTok{VectorSource}\NormalTok{(text)) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{tm\_map}\NormalTok{(}\FunctionTok{content\_transformer}\NormalTok{(tolower)) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{tm\_map}\NormalTok{(removePunctuation) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{tm\_map}\NormalTok{(removeNumbers) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{tm\_map}\NormalTok{(removeWords, }\FunctionTok{stopwords}\NormalTok{(}\StringTok{"en"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{tm\_map}\NormalTok{(stripWhitespace)}
+  
+  \FunctionTok{return}\NormalTok{(corpus)}
+\NormalTok{\}}
+
+\CommentTok{\#teststr \textless{}{-} "1) Fight The Risk of Cancer! http://www.adclick.ws/p.cfm?o=315\&s=pk0072) Slim Down {-} Guaranteed to lose 10{-}12 lbs in 30 days http://www.adclick.ws/p.cfm?o=249\&s=pk0073) Get the Child Support You Deserve {-} Free Legal Advice http://www.adclick.ws/p.cfm?o=245\&s=pk0024) Join the Web\textquotesingle{}s Fastest Growing Singles Community http://www.adclick.ws/p.cfm?o=259\&s=pk0075) Start Your Private Photo Album Online! http://www.adclick.ws/p.cfm?o=283\&s=pk007Have a Wonderful Day, Offer Manager PrizeMamaIf you wish to leave this list please use the link below. http://www.qves.com/trim/?zzzz@spamassassin.taint.org\%7C17\%7C308417"}
+\NormalTok{teststr }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}Subject: vilem mathesius lecture series 13 {-} prague , nov . 98    the vilem mathesius centre for research and education in semiotics and linguistics presents the vilem mathesius lecture series 13 november 9 {-} {-} 20 , 1998 prague , czech republic call for participation \& call for grant applications the thirteenth cycle of the vilem mathesius lecture series , organized by the vilem mathesius centre for research and education in semiotics and linguistics ( charles university ) , will be held in prague , czech republic , from november 9 until 20 , 1998 . the scientific program will consist of the following invited courses ( usually three 90 minutes lectures ) : * emmon bach ( canada ) : " problems of universal and parochial grammar " * joan bresnan ( usa ) : " optimal syntax " * nicoletta calzolari ( italy ) : " corpus based lexicon building " * bernard comrie ( germany ) : " ( 1 ) advances in our understanding of relative clauses . ( 2 ) form and function in reference{-}tracking systems . ( 3 ) agreement in tsez ( ne caucasian ) : a typological assessment . " * edward l . keenan ( usa ) : \textless{} tba \textgreater{} * christian lehmann ( germany ) : " typology of possession " * karen sparck {-} jones ( england ) : " information retrieval and language processing " * hans uszkoreit ( germany ) : " modelling of linguistic performance " * bonnie webber ( usa ) : \textless{} tba \textgreater{} we are still waiting for confirmation from m . a . k . halliday , and h {-} j . lieb . among the czech lecturers invited to vmc 13 are frantisek cermak , miroslav cervenka , jan firbas , jan hajic , eva hajicova , jaroslav peregrin , and petr sgall . the exact time schedule will be announced later . grants ( deadline : may 31 , 1998 ) a limited number of grants is available for students from post{-}communist countries . the deadline for application is * may 31 , 1998 * . ideally , an application for a grant should include a letter of motivation and a letter of recommendation by a supervisor . applications should be send to professor eva hajicova at the address below . applicants will be notified by the end of june regarding approval of their application . participation ( deadline : september 15 , 1998 ) the participation fee for vmc 13 is usd 350 , which includes tuition fee , accommodation , and lunches . in order to ensure accommodation , ( paying ) participants should register before * september 15 , 1998 * . please contact mrs . brdickova or prof . hajicova at the following address for registration or further information . mrs . libuse brdickova institute of formal and applied linguistics ufal mff uk malostranske nam . 25 cz{-}11800 praha 1 czech republic \{ hajicova , brdickov \} @ ufal . mff . cuni . cz ( phone ) + + 420 {-} 2{-}2191 {-} 4278 ( fax ) + + 420 {-} 2{-}2191 {-} 4309 check our website at http : / / kwetal . ms . mff . cuni . cz / \textasciitilde{} gj / vmc / . {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} {-} geert {-} jan m . kruijff institute of formal \& applied linguistics / linguistic data laboratory faculty of mathematics and physics , charles university malostranske nam . 25 , cz{-}118 00 prague 1 , czech republic phone : + + 420 {-} 2{-}2191 {-} 4255 fax : + + 420 {-} 2{-}2191 {-} 4309 email : gj @ ufal . ms . mff . cuni . cz , gj @ acm . org www : http : / / kwetal . ms . mff . cuni . cz / \textasciitilde{} gj /\textquotesingle{}}
+\CommentTok{\# Extract links using regular expressions}
+\NormalTok{links }\OtherTok{\textless{}{-}} \FunctionTok{str\_extract\_all}\NormalTok{(teststr, }\StringTok{"(?i)}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{b(?:https?|ftp)://}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{S+}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{b"}\NormalTok{)}
+
+\CommentTok{\# Initialize an empty list to store the extracted features}
+\NormalTok{link\_data }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+\NormalTok{predlist }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+
+\CommentTok{\# Extract features for each link}
+\ControlFlowTok{for}\NormalTok{ (link }\ControlFlowTok{in}\NormalTok{ links[[}\DecValTok{1}\NormalTok{]]) \{}
+  \CommentTok{\# Initialize an empty list for storing the features of the current link}
+\NormalTok{  link\_feature }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+  
+  \CommentTok{\# length\_url feature}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{length\_url }\OtherTok{\textless{}{-}} \FunctionTok{nchar}\NormalTok{(link)}
+\NormalTok{  hostname }\OtherTok{\textless{}{-}} \FunctionTok{strsplit}\NormalTok{(}\FunctionTok{gsub}\NormalTok{(}\StringTok{"http://|https://|www}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, }\StringTok{""}\NormalTok{, link), }\StringTok{"/"}\NormalTok{)[[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{)]]}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{length\_hostname }\OtherTok{\textless{}{-}} \FunctionTok{nchar}\NormalTok{(hostname)}
+\NormalTok{  is\_punny}\OtherTok{=}\DecValTok{0}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{has\_ascii\_characters}\NormalTok{(hostname)) \{}
+\NormalTok{    is\_punny}\OtherTok{=}\DecValTok{1}
+\NormalTok{  \}}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{punycode }\OtherTok{\textless{}{-}}\NormalTok{ is\_punny}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_dots }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(}\FunctionTok{str\_locate\_all}\NormalTok{(hostname, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{)[[}\DecValTok{1}\NormalTok{]])}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_hyphens }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(}\FunctionTok{str\_locate\_all}\NormalTok{(hostname, }\StringTok{"{-}"}\NormalTok{)[[}\DecValTok{1}\NormalTok{]])}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_qm }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{?"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_and }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"\&"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{ip }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_slash }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{/"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_www }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"www"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_or }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{|"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_eq }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"="}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_underscore }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"\_"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_tilde }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"\textasciitilde{}"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_percent }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"\%"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_star }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{*"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_colon }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{":"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_comma }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{","}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_semicolon }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{";"}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_dollar }\OtherTok{\textless{}{-}} \FunctionTok{str\_count}\NormalTok{(hostname, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{$"}\NormalTok{)}
+  
+\NormalTok{  ratio\_digits\_url }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{str\_count}\NormalTok{(link, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{d"}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{nchar}\NormalTok{(link)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{ratio\_digits\_url }\OtherTok{\textless{}{-}}\NormalTok{ ratio\_digits\_url}
+\NormalTok{  http\_in\_path }\OtherTok{\textless{}{-}} \FunctionTok{grepl}\NormalTok{(}\StringTok{"http"}\NormalTok{, link)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{http\_in\_path }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(http\_in\_path)}
+\NormalTok{  https\_token }\OtherTok{\textless{}{-}} \FunctionTok{grepl}\NormalTok{(}\StringTok{"https"}\NormalTok{, link, }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{https\_token }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(https\_token)}
+\NormalTok{  submit\_email }\OtherTok{\textless{}{-}} \FunctionTok{grepl}\NormalTok{(}\StringTok{"submit\_email"}\NormalTok{, link, }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{submit\_email }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(submit\_email)}
+\NormalTok{  phish\_hints }\OtherTok{\textless{}{-}} \FunctionTok{grepl}\NormalTok{(}\StringTok{"phish|spoof|fake"}\NormalTok{, link, }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{phish\_hints }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(phish\_hints)}
+  
+  
+\NormalTok{  response }\OtherTok{\textless{}{-}} \FunctionTok{GET}\NormalTok{(link)}
+  
+  
+  \CommentTok{\# Extract the number of external redirections}
+\NormalTok{  nb\_external\_redirection }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(response}\SpecialCharTok{$}\NormalTok{url) }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_external\_redirection }\OtherTok{\textless{}{-}}\NormalTok{ nb\_external\_redirection}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{nb\_redirection }\OtherTok{\textless{}{-}}\NormalTok{ nb\_external\_redirection}
+  
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{ratio\_intRedirection }\OtherTok{\textless{}{-}}\NormalTok{ nb\_external\_redirection}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(response}\SpecialCharTok{$}\NormalTok{url)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{ratio\_extRedirection }\OtherTok{\textless{}{-}}\NormalTok{ nb\_external\_redirection}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(response}\SpecialCharTok{$}\NormalTok{url)}
+  
+\NormalTok{  ratio\_extErrors }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{str\_count}\NormalTok{(response}\SpecialCharTok{$}\NormalTok{content, }\StringTok{"error"}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{nchar}\NormalTok{(response}\SpecialCharTok{$}\NormalTok{content)}
+\NormalTok{  ratio\_extErrors }\OtherTok{\textless{}{-}} \FunctionTok{any}\NormalTok{(ratio\_extErrors)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{ratio\_extErrors }\OtherTok{\textless{}{-}} \FunctionTok{as.double}\NormalTok{(ratio\_extErrors)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{ratio\_intErrors }\OtherTok{\textless{}{-}} \FunctionTok{as.double}\NormalTok{(ratio\_extErrors)}
+  
+\NormalTok{  popup\_window }\OtherTok{\textless{}{-}} \FunctionTok{any}\NormalTok{(}\FunctionTok{grepl}\NormalTok{(}\StringTok{"pop|popup|window"}\NormalTok{, response}\SpecialCharTok{$}\NormalTok{content, }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{popup\_window }\OtherTok{\textless{}{-}} \FunctionTok{as.double}\NormalTok{(popup\_window)}
+  
+  \CommentTok{\# Check if the URL has a DNS record}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{dns\_record }\OtherTok{\textless{}{-}} \DecValTok{1}
+  
+  \CommentTok{\# Check if the URL is indexed by Google}
+\NormalTok{  google\_index }\OtherTok{\textless{}{-}} \FunctionTok{grepl}\NormalTok{(}\StringTok{"site:google.com"}\NormalTok{, link)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{google\_index }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(google\_index)}
+  
+  \CommentTok{\# Get the domain from the hostname}
+\NormalTok{  domain }\OtherTok{\textless{}{-}} \FunctionTok{str\_extract}\NormalTok{(hostname, }\StringTok{"(?\textless{}=}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.)([\^{}.]+}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.[\^{}.]+)$"}\NormalTok{)}
+  
+  \CommentTok{\# Check if the domain is registered}
+\NormalTok{  whois\_result }\OtherTok{\textless{}{-}} \FunctionTok{tryCatch}\NormalTok{(}\FunctionTok{whois}\NormalTok{(domain), }\AttributeTok{error =} \ControlFlowTok{function}\NormalTok{(e) }\ConstantTok{NULL}\NormalTok{)}
+\NormalTok{  is\_registered }\OtherTok{\textless{}{-}} \SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(whois\_result)}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{whois\_registered\_domain }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(is\_registered)}
+  
+  \CommentTok{\# Get the domain registration length}
+  \ControlFlowTok{if}\NormalTok{ (is\_registered) \{}
+\NormalTok{    reg\_date }\OtherTok{\textless{}{-}}\NormalTok{ whois\_result}\SpecialCharTok{$}\NormalTok{created}
+\NormalTok{    reg\_length }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(}\FunctionTok{Sys.Date}\NormalTok{(), reg\_date, }\AttributeTok{units =} \StringTok{"days"}\NormalTok{))}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    reg\_length }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{  \}}
+\NormalTok{  link\_feature}\SpecialCharTok{$}\NormalTok{domain\_registration\_length }\OtherTok{\textless{}{-}}\NormalTok{ reg\_length}
+  
+  \CommentTok{\# Append the link features to the list}
+\NormalTok{  link\_data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(link\_data, }\FunctionTok{list}\NormalTok{(}\FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{t}\NormalTok{(link\_feature), }\AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{)))}
+\NormalTok{  df }\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{sapply}\NormalTok{(link\_feature,c)))}
+\NormalTok{  new\_predictions }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(phishingmodel}\SpecialCharTok{$}\NormalTok{model,df)}
+\NormalTok{  predlist[link] }\OtherTok{\textless{}{-}}\NormalTok{ new\_predictions}
+\NormalTok{\}}
+
+\CommentTok{\# Combine all the link data rows into a single data frame}
+\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{do.call}\NormalTok{(rbind, link\_data)}
+
+\NormalTok{example\_bodies }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+\NormalTok{  teststr}
+\NormalTok{)}
+\NormalTok{preprocessed\_bodies }\OtherTok{\textless{}{-}} \FunctionTok{preprocess\_text}\NormalTok{(example\_bodies)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in tm_map.SimpleCorpus(., content_transformer(tolower)): transformation
+## drops documents
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in tm_map.SimpleCorpus(., removePunctuation): transformation drops
+## documents
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in tm_map.SimpleCorpus(., removeNumbers): transformation drops
+## documents
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in tm_map.SimpleCorpus(., removeWords, stopwords("en")): transformation
+## drops documents
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in tm_map.SimpleCorpus(., stripWhitespace): transformation drops
+## documents
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a document{-}term matrix}
+\NormalTok{dtm }\OtherTok{\textless{}{-}} \FunctionTok{DocumentTermMatrix}\NormalTok{(preprocessed\_bodies)}
+\NormalTok{dtm }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(dtm)}
+\NormalTok{predictions }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(spammodel, }\AttributeTok{new\_data=}\NormalTok{dtm)}
+\NormalTok{predlist[}\StringTok{\textquotesingle{}spam\textquotesingle{}}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{predictions[}\DecValTok{1}\NormalTok{]}
+
+\CommentTok{\# Convert the list of link features to a data frame}
+\CommentTok{\# view(new\_data)}
+\CommentTok{\# print(teststr)}
+\CommentTok{\# view(predlist)}
+\NormalTok{attacked}\OtherTok{=}\ConstantTok{FALSE}
+
+\ControlFlowTok{for}\NormalTok{ (key }\ControlFlowTok{in} \FunctionTok{names}\NormalTok{(predlist)) \{}
+  \ControlFlowTok{if}\NormalTok{(predlist[key]}\SpecialCharTok{\textgreater{}=}\DecValTok{1} \SpecialCharTok{\&\&}\NormalTok{ key }\SpecialCharTok{!=} \StringTok{"spam"}\NormalTok{)\{}
+    \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(key,}\StringTok{"is harmful"}\NormalTok{))}
+\NormalTok{    attacked}\OtherTok{=}\ConstantTok{TRUE}
+\NormalTok{  \}}
+\NormalTok{\}}
+\ControlFlowTok{if}\NormalTok{(attacked}\SpecialCharTok{==}\ConstantTok{TRUE}\NormalTok{)\{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"This is a harmfull social engineering content, please avoid!"}\NormalTok{)}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{\{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"this is a safe content"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "this is a safe content"
+\end{verbatim}
+
+\end{document}

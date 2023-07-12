@@ -1,78 +1,92 @@
-# Social Enginnering
+# Social Engineering
 
+To incorporate the code for detecting social engineering content into your report, you can follow the same approach as before. Here's an example of how you can include the code snippets:
 
-**Data Collection and Preprocessing**
+**Social Engineering Content Detection**
 
-To train the spam detection model, we collected data from multiple sources and combined them into a single dataset. The following code snippet illustrates the data collection and preprocessing steps:
+For detecting social engineering content, we developed a program that analyzes URLs and text content to identify potential malicious links and harmful social engineering tactics. The following code snippet demonstrates the detection process:
 
 ```R
-# Read the CSV files
-spamassasin <- read_csv("completeSpamAssassin.csv")
-spamsubset <- read_csv("enronSpamSubset.csv")
-lingspam <- read_csv("lingSpam.csv")
+# Load the saved models
+spammodel <- readRDS("spam.rds")
+phishingmodel <- readRDS("phishing.rbs")
 
-# Combine the datasets
-spamdata <- bind_rows(spamassasin, spamsubset, lingspam) %>%
-  select(Body, Label)
+# Define a function to check for ASCII characters
+has_ascii_characters <- function(str) {
+  encoding <- Encoding(str)
+  return(encoding == "unknown" || encoding == "ASCII")
+}
 
-# Remove rows with empty or "empty" values in the 'Body' column
-spamdata <- spamdata %>% filter(Body != "" & Body != "empty")
+# Define a function to preprocess the text
+preprocess_text <- function(text) {
+  corpus <- Corpus(VectorSource(text)) %>%
+    tm_map(content_transformer(tolower)) %>%
+    tm_map(removePunctuation) %>%
+    tm_map(removeNumbers) %>%
+    tm_map(removeWords, stopwords("en")) %>%
+    tm_map(stripWhitespace)
+  
+  return(corpus)
+}
 
-# Remove rows with Label values other than 0 or 1
-spamdata <- spamdata %>% filter(Label %in% c(0, 1))
+# Extract links using regular expressions
+links <- str_extract_all(teststr, "(?i)\\b(?:https?|ftp)://\\S+\\b")
 
-# Remove duplicates based on the 'Body' column
-spamdata <- spamdata %>% distinct(Body, .keep_all = TRUE)
+# Initialize an empty list to store the extracted features
+link_data <- list()
+predlist <- c()
 
-# Convert the 'Body' column to a corpus
-corpus <- Corpus(VectorSource(spamdata$Body))
+# Extract features for each link
+for (link in links[[1]]) {
+  # Initialize an empty list for storing the features of the current link
+  link_feature <- list()
+  
+  # ... (code for extracting link features)
 
-# Perform text preprocessing
-corpus <- corpus %>% 
-  tm_map(content_transformer(tolower)) %>%
-  tm_map(removePunctuation) %>%
-  tm_map(removeNumbers) %>%
-  tm_map(removeWords, stopwords("en")) %>%
-  tm_map(stripWhitespace)
+  # Append the link features to the list
+  link_data <- c(link_data, list(as.data.frame(t(link_feature), stringsAsFactors = FALSE)))
+  df <-data.frame(t(sapply(link_feature,c)))
+  new_predictions <- predict(phishingmodel$model,df)
+  predlist[link] <- new_predictions
+}
+
+# Combine all the link data rows into a single data frame
+new_data <- do.call(rbind, link_data)
+
+# Preprocess the text content
+example_bodies <- c(teststr)
+preprocessed_bodies <- preprocess_text(example_bodies)
 
 # Create a document-term matrix
-dtm <- DocumentTermMatrix(corpus)
+dtm <- DocumentTermMatrix(preprocessed_bodies)
+dtm <- as.matrix(dtm)
+
+# Make predictions using the saved models
+predictions <- predict(spammodel, new_data=dtm)
+predlist['spam'] <- predictions[1]
+
+# Detect potential harmful links and social engineering content
+attacked <- FALSE
+
+for (key in names(predlist)) {
+  if (predlist[key] >= 1 && key != "spam") {
+    print(paste(key, "is harmful"))
+    attacked <- TRUE
+  }
+}
+
+# Check if the content is safe or potentially harmful
+if (attacked == TRUE) {
+  print("This is a harmful social engineering content, please avoid!")
+} else {
+  print("This is a safe content")
+}
 ```
 
-In this code, we read the CSV files containing spam data from different sources. We combined these datasets and selected the 'Body' and 'Label' columns. Rows with empty values or non-binary labels were filtered out. Additionally, duplicate rows based on the 'Body' column were removed. The 'Body' column was then converted into a corpus, and text preprocessing techniques such as converting to lowercase, removing punctuation and numbers, eliminating common English stopwords, and stripping whitespace were applied. Finally, a document-term matrix (dtm) was created to represent the text data numerically.
+In this code, we load the saved models for spam detection (`spammodel`) and phishing detection (`phishingmodel`). We define helper functions to check for ASCII characters and preprocess the text content. The code then extracts links from the provided text and processes each link to extract features for analysis. The link features are stored in `link_data` and combined into a single data frame (`new_data`).
 
-**4. Machine Learning Models**
+The text content is preprocessed using the `preprocess_text` function, and a document-term matrix (`dtm`) is created. Predictions are made for spam detection using the `spammodel`, and phishing detection predictions are made for each link using the `phishingmodel`. The predictions are stored in `predlist`.
 
-To train the spam detection model, we used a Support Vector Machine (SVM) algorithm with a linear kernel. Here is the code snippet that demonstrates the training and evaluation process:
+The code then checks for potentially harmful links and social engineering content by iterating through `predlist`. If a potentially harmful link is detected, it is printed, and the `attacked` flag is set to `TRUE`. Finally, based on the value of `attacked`, the code prints whether the content is safe or potentially harmful.
 
-```R
-# Split the data into training and testing sets
-set.seed(123)
-train_index <- createDataPartition(spamdata$Label, p = 0.8, list = FALSE)
-train_data <- dtm[train_index, ]
-test_data <- dtm[-train_index, ]
-train_labels <- spamdata$Label[train_index]
-test_labels <- spamdata$Label[-train_index]
-
-# Train the model using the training data
-model <- svm(x = as.matrix(train_data), y = as.factor(train_labels), kernel = "linear", verbose = TRUE)
-
-# Make predictions on the test data
-predictions <- predict(model, newdata = as.matrix(test_data))
-
-# Evaluate the model
-confusion_matrix <- table(predictions, test_labels)
-accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
-
-# Calculate precision
-precision <- caret::precision(predictions, test_labels)
-
-# Print the confusion matrix and accuracy
-print(confusion_matrix)
-print(paste("Accuracy:", accuracy))
-print(predictions)
-```
-
-In this code, we split the data into training and testing sets using an 80-20 split ratio. The SVM model is trained on the training data using the `svm` function from the `e1071` package. We then make predictions on the test data and evaluate the model's performance using a confusion matrix and accuracy calculation. The precision is also calculated using the `caret::precision` function.
-
-Feel free to include these code snippets in the respective sections of your report. Make sure to provide any additional explanations or insights to enhance the understanding of your work.
+Remember to include these code snippets in the appropriate section of your report, along with any additional explanations or insights you find relevant.

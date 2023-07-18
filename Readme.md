@@ -1,7 +1,7 @@
 # Social Engineering Detection using Machine Learning
 
 
-*Prepared by: [Praise]*
+*Prepared by: Praise*
 
 *7/18/2023*
 

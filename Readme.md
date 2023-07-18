@@ -6,6 +6,7 @@
 *7/18/2023*
 
 **1. Introduction**
+
 Social engineering attacks pose a significant threat in the digital landscape, targeting individuals and organizations to manipulate and deceive them into performing harmful actions or disclosing sensitive information. As a data analyst, the objective is to develop a comprehensive system that can effectively detect social engineering content and protect users from potential harm. This report presents an analysis of merged code that combines phishing detection and spam detection techniques using machine learning algorithms.
 
 **2. Phishing Detection**

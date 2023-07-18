@@ -176,6 +176,42 @@ if (file.exists("spam.rds")) {
 }
 ```
 
+**1. Confusion Matrix for Phishing Detection:**
+
+```R
+# Plotting the confusion matrix for phishing detection
+library(ggplot2)
+
+# Create a data frame from the confusion matrix
+confusion_df <- as.data.frame.matrix(confusion_matrix)
+
+# Generate a heatmap of the confusion matrix
+ggplot(data = confusion_df, aes(x = Col1, y = rownames(confusion_df), fill = as.factor(value))) +
+  geom_tile() +
+  scale_fill_manual(values = c("#FF0000", "#00FF00"), labels = c("Legitimate", "Phishing")) +
+  labs(x = "Actual", y = "Predicted", fill = "Status") +
+  theme_bw()
+```
+
+**2. Confusion Matrix for Spam Detection:**
+
+```R
+# Plotting the confusion matrix for spam detection
+library(ggplot2)
+
+# Create a data frame from the confusion matrix
+confusion_df <- as.data.frame.matrix(confusion_matrix)
+
+# Generate a heatmap of the confusion matrix
+ggplot(data = confusion_df, aes(x = Col1, y = rownames(confusion_df), fill = as.factor(value))) +
+  geom_tile() +
+  scale_fill_manual(values = c("#FF0000", "#00FF00"), labels = c("Not Spam", "Spam")) +
+  labs(x = "Actual", y = "Predicted", fill = "Status") +
+  theme_bw()
+```
+
+
+
 **4. Social Engineering Detection**
 The code includes a function called `social_engineering_detection` that takes a string as input and detects the presence of social engineering content. The function utilizes the trained phishing and spam detection models to make predictions and identify potential threats.
 

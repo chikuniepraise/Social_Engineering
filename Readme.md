@@ -1,6 +1,5 @@
-# Social Engineering
+# Social Engineering Detection using Machine Learning
 
-**Comprehensive Report: Social Engineering Detection using Machine Learning**
 
 *Prepared by: [Praise]*
 

@@ -84,7 +84,7 @@ if (file.exists("phishing.rbs")) {
 }
 ```
 
-*3. Spam Detection*
+***3. Spam Detection***
 
 Spam detection involves identifying unsolicited and unwanted emails. The code utilizes libraries such as `tm`, `tidyverse`, `e1071`, and `SparseM` for spam detection. The scientific steps in spam detection are as follows:
 

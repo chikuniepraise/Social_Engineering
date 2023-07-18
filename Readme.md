@@ -10,6 +10,7 @@
 Social engineering attacks pose a significant threat in the digital landscape, targeting individuals and organizations to manipulate and deceive them into performing harmful actions or disclosing sensitive information. As a data analyst, the objective is to develop a comprehensive system that can effectively detect social engineering content and protect users from potential harm. This report presents an analysis of merged code that combines phishing detection and spam detection techniques using machine learning algorithms.
 
 **2. Phishing Detection**
+
 Phishing detection involves identifying malicious links that attempt to deceive users into revealing sensitive information. The code combines various libraries such as `lattice`, `caret`, `e1071`, `tm`, and `httr`. The key scientific steps involved in phishing detection are as follows:
 
 - **Step 1: Data Loading and Preparation**:
@@ -83,7 +84,8 @@ if (file.exists("phishing.rbs")) {
 }
 ```
 
-**3. Spam Detection**
+*3. Spam Detection*
+
 Spam detection involves identifying unsolicited and unwanted emails. The code utilizes libraries such as `tm`, `tidyverse`, `e1071`, and `SparseM` for spam detection. The scientific steps in spam detection are as follows:
 
 - **Step 1: Data Loading and Preparation**:
